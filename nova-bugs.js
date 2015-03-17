@@ -62,6 +62,9 @@ app.controller("BugCtrl", function ($scope) {
             else if ($scope.filterSelection == "inProgress") {
                 filterInProgress();
             }
+            else if ($scope.filterSelection == "notInProgress") {
+                filterNotInProgress();
+            }
             else if ($scope.filterSelection == "noOwner") {
                 filterNoOwner();
             }
@@ -170,6 +173,15 @@ app.controller("BugCtrl", function ($scope) {
         for (var i = 0, l = $scope.raw_data.length; i < l; i++) {
             var item = $scope.raw_data[i];
             if (item.status == "In Progress") {
+                $scope.filtered_data.push(item);
+            }
+        }
+    }
+
+    function filterNotInProgress() {
+        for (var i = 0, l = $scope.raw_data.length; i < l; i++) {
+            var item = $scope.raw_data[i];
+            if (item.status != "In Progress") {
                 $scope.filtered_data.push(item);
             }
         }
